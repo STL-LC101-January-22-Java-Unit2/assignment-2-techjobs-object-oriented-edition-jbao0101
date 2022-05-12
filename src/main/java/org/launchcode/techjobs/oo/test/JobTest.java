@@ -60,32 +60,16 @@ public class JobTest {
     }
 
     @Test
-    public void testToStringMethod(){
-//        Job emptyTestJob = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
-//        assertEquals(testJob.toString().startsWith("\n"), true);
-//        assertTrue(testJob.toString().indexOf("Index: ")<testJob.toString().indexOf("1"));
-//        assertTrue(testJob.toString().indexOf("Name: ")<testJob.toString().indexOf(testJob.getName()));
-//        assertTrue(testJob.toString().indexOf("Employer: ")<testJob.toString().indexOf(testJob.getEmployer().toString()));
-//        assertTrue(testJob.toString().indexOf("Location: ")<testJob.toString().indexOf(testJob.getLocation().toString()));
-//        assertTrue(testJob.toString().indexOf("Position Type: ")<testJob.toString().indexOf(testJob.getPositionType().toString()));
-//        assertTrue(testJob.toString().indexOf("Core Competency: ")<testJob.toString().indexOf(testJob.getCoreCompetency().toString()));
-//        assertEquals(emptyTestJob.toString(), "\nID: " + emptyTestJob.getId() + "\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n");
-    }
-
-    @Test
     public void testToStringStartsAndEndsWithNewLine(){
-        assertEquals(testJob.toString().substring(0, 1), "\n");
-        assertEquals(testJob.toString().substring(testJob.toString().lastIndexOf("\n"), testJob.toString().lastIndexOf("\n")+1), "\n");
+        Job jobbie = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals(jobbie.toString().charAt(0), '\n');
+        assertEquals(jobbie.toString().charAt(jobbie.toString().length()-1), '\n');
     }
 
     @Test
     public void testToStringContainsCorrectLabelsAndData(){
-        assertTrue(testJob.toString().indexOf("ID: ")<testJob.toString().indexOf(testJob.getId()));
-        assertTrue(testJob.toString().indexOf("Name: ")<testJob.toString().indexOf(testJob.getName()));
-        assertTrue(testJob.toString().indexOf("Employer: ")<testJob.toString().indexOf(testJob.getEmployer().toString()));
-        assertTrue(testJob.toString().indexOf("Location: ")<testJob.toString().indexOf(testJob.getLocation().toString()));
-        assertTrue(testJob.toString().indexOf("Position Type: ")<testJob.toString().indexOf(testJob.getPositionType().toString()));
-        assertTrue(testJob.toString().indexOf("Core Competency: ")<testJob.toString().indexOf(testJob.getCoreCompetency().toString()));
+        Job jobbie = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals(jobbie.toString(), "\n" + "ID: " + jobbie.getId() + "\nName: " + jobbie.getName() + "\nEmployer: " + jobbie.getEmployer() + "\nLocation: " + jobbie.getLocation() + "\nPosition Type: " + jobbie.getPositionType() + "\nCore Competency: " + jobbie.getCoreCompetency() +"\n");
     }
 
     @Test

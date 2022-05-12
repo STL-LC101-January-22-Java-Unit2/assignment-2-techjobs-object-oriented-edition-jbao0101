@@ -119,6 +119,6 @@ public class Job {
             strCoreCompetency = "Data not available";
         }
 
-        return "\nID: " + id + "\nName: " + name + "\nEmployer: " + strEmployer + "\nLocation: " + strLocation + "\nPosition Type: " + strPositionType + "\nCore Competency: " + strCoreCompetency +"\n";
+        return "\n" + "ID: " + id + "\nName: " + name + "\nEmployer: " + strEmployer + "\nLocation: " + strLocation + "\nPosition Type: " + strPositionType + "\nCore Competency: " + strCoreCompetency +"\n";
     }
 }
