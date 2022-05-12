@@ -43,4 +43,24 @@ public class JobTest {
         assertTrue(testJob3.getEmployer() instanceof Employer);
     }
 
+    @Test
+    public void testJobsForEquality(){
+        Job testJob4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job testJob5 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertFalse(testJob4 == testJob5);
+    }
+
+    @Test
+    public void testToStringMethod(){
+        Job emptyTestJob = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        assertEquals(testJob.toString().startsWith("\n"), true);
+        assertTrue(testJob.toString().indexOf("Index: ")<testJob.toString().indexOf("1"));
+        assertTrue(testJob.toString().indexOf("Name: ")<testJob.toString().indexOf("name"));
+        assertTrue(testJob.toString().indexOf("Employer: ")<testJob.toString().indexOf("employer"));
+        assertTrue(testJob.toString().indexOf("Location: ")<testJob.toString().indexOf("location"));
+        assertTrue(testJob.toString().indexOf("Position Type: ")<testJob.toString().indexOf("positionType"));
+        assertTrue(testJob.toString().indexOf("Core Competency: ")<testJob.toString().indexOf("coreCompetency"));
+        assertEquals(emptyTestJob.toString(), "\nID: " + emptyTestJob.getId() + "\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n");
+    }
+
 }
