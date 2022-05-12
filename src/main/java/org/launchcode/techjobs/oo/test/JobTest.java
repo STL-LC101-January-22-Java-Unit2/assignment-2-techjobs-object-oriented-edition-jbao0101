@@ -31,12 +31,21 @@ public class JobTest {
     }
 
     @Test
-    public void testSettingJobId(){assertTrue(testJob2.getId() - testJob.getId() == 1);}
+    public void testSettingJobId(){
+        Job testEmptyJob = new Job();
+        Job testEmptyJob2 = new Job();
+        assertTrue(testEmptyJob2.getId() - testEmptyJob.getId() == 1);
+    }
 
     @Test
     public void testJobConstructorSetsAllFields(){
         Job testJob3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertEquals(testJob3.getName(), "Product tester");
+        assertEquals(testJob3.getLocation().toString(), "Desert");
+        assertEquals(testJob3.getEmployer().toString(), "ACME");
+        assertEquals(testJob3.getPositionType().toString(), "Quality control");
+        assertEquals(testJob3.getCoreCompetency().toString(), "Persistence");
+        assertTrue(testJob3.getName() == "Product tester");
         assertTrue(testJob3.getLocation() instanceof Location);
         assertTrue(testJob3.getPositionType() instanceof PositionType);
         assertTrue(testJob3.getCoreCompetency() instanceof CoreCompetency);
@@ -52,14 +61,36 @@ public class JobTest {
 
     @Test
     public void testToStringMethod(){
+//        Job emptyTestJob = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+//        assertEquals(testJob.toString().startsWith("\n"), true);
+//        assertTrue(testJob.toString().indexOf("Index: ")<testJob.toString().indexOf("1"));
+//        assertTrue(testJob.toString().indexOf("Name: ")<testJob.toString().indexOf(testJob.getName()));
+//        assertTrue(testJob.toString().indexOf("Employer: ")<testJob.toString().indexOf(testJob.getEmployer().toString()));
+//        assertTrue(testJob.toString().indexOf("Location: ")<testJob.toString().indexOf(testJob.getLocation().toString()));
+//        assertTrue(testJob.toString().indexOf("Position Type: ")<testJob.toString().indexOf(testJob.getPositionType().toString()));
+//        assertTrue(testJob.toString().indexOf("Core Competency: ")<testJob.toString().indexOf(testJob.getCoreCompetency().toString()));
+//        assertEquals(emptyTestJob.toString(), "\nID: " + emptyTestJob.getId() + "\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n");
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        assertEquals(testJob.toString().substring(0, 1), "\n");
+        assertEquals(testJob.toString().substring(testJob.toString().lastIndexOf("\n"), testJob.toString().lastIndexOf("\n")+1), "\n");
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        assertTrue(testJob.toString().indexOf("ID: ")<testJob.toString().indexOf(testJob.getId()));
+        assertTrue(testJob.toString().indexOf("Name: ")<testJob.toString().indexOf(testJob.getName()));
+        assertTrue(testJob.toString().indexOf("Employer: ")<testJob.toString().indexOf(testJob.getEmployer().toString()));
+        assertTrue(testJob.toString().indexOf("Location: ")<testJob.toString().indexOf(testJob.getLocation().toString()));
+        assertTrue(testJob.toString().indexOf("Position Type: ")<testJob.toString().indexOf(testJob.getPositionType().toString()));
+        assertTrue(testJob.toString().indexOf("Core Competency: ")<testJob.toString().indexOf(testJob.getCoreCompetency().toString()));
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField(){
         Job emptyTestJob = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
-        assertEquals(testJob.toString().startsWith("\n"), true);
-        assertTrue(testJob.toString().indexOf("Index: ")<testJob.toString().indexOf("1"));
-        assertTrue(testJob.toString().indexOf("Name: ")<testJob.toString().indexOf("name"));
-        assertTrue(testJob.toString().indexOf("Employer: ")<testJob.toString().indexOf("employer"));
-        assertTrue(testJob.toString().indexOf("Location: ")<testJob.toString().indexOf("location"));
-        assertTrue(testJob.toString().indexOf("Position Type: ")<testJob.toString().indexOf("positionType"));
-        assertTrue(testJob.toString().indexOf("Core Competency: ")<testJob.toString().indexOf("coreCompetency"));
         assertEquals(emptyTestJob.toString(), "\nID: " + emptyTestJob.getId() + "\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n");
     }
 
